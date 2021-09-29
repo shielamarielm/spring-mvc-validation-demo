@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hands-on Spring Validation</title>
+</head>
+<body>
+    <form method="POST" th:action="@{/orders}" th:object="${order}">
+
+        <h2>CAKE ORDER</h2>
+
+        <div style="margin-top:20px;">
+            <div><b>Cake Flavor</b></div>
+            <div th:each="flavor:${ cakeFlavors }">
+                <input name="cakeFlavor"
+                       type="radio"
+                       th:value="${ flavor }"
+                       th:checked="${#strings.equals(flavor,order.cakeFlavor)}" />
+                <span th:text="${ flavor }" />
+            </div>
+            <span style="color:red;"
+                  th:if="${#fields.hasErrors('cakeFlavor')}"
+                  th:errors="*{cakeFlavor}">Cake Flavor Error</span>
+        </div>
+
+        <div style="margin-top:20px;">
+            <div><b>Quantity</b></div>
+            <input type="text" id="quantity" th:field="*{quantity}" />
+            <div style="color:red;"
+                  th:if="${#fields.hasErrors('quantity')}"
+                  th:errors="*{quantity}">Quantity Error</div>
+        </div>
+
+        <div style="margin-top:20px;">
+            <div><b>Delivery Date</b></div>
+            <input type="date" id="deliveryDate" th:field="*{deliveryDate}" />
+            <div style="color:red;"
+                  th:if="${#fields.hasErrors('deliveryDate')}"
+                  th:errors="*{deliveryDate}">Delivery Date Error</div>
+        </div>
+
+        <h2>CUSTOMER INFORMATION</h2>
+
+        <div style="margin-top:20px;">
+            <div><b>First Name</b></div>
+            <input type="text" id="firstName" th:field="*{firstName}" />
+            <div style="color:red;"
+                  th:if="${#fields.hasErrors('firstName')}"
+                  th:errors="*{firstName}">First Name Error</div>
+        </div>
+
+        <div style="margin-top:20px;">
+            <div><b>Last Name</b></div>
+            <input type="text" id="lastName" th:field="*{lastName}" />
+            <div style="color:red;"
+                 th:if="${#fields.hasErrors('lastName')}"
+                 th:errors="*{lastName}">Last Name Error</div>
+        </div>
+
+        <div style="margin-top:20px;">
+            <div><b>Contact Number</b></div>
+            <input type="text" id="contactNo" th:field="*{contactNo}" />
+            <div style="color:red;"
+                  th:if="${#fields.hasErrors('contactNo')}"
+                  th:errors="*{contactNo}">Contact No Error</div>
+        </div>
+
+        <div style="margin-top:20px;">
+            <div><b>Email Address</b></div>
+            <input type="text" id="email" th:field="*{email}" />
+            <div style="color:red;"
+                  th:if="${#fields.hasErrors('email')}"
+                  th:errors="*{email}">Email Error</div>
+        </div>
+
+        <div style="margin-top:20px;">
+            <div><b>Birth Date</b></div>
+            <input type="date" id="birthDate" th:field="*{birthDate}" />
+            <div style="color:red;"
+                  th:if="${#fields.hasErrors('birthDate')}"
+                  th:errors="*{birthDate}">Birth Date Error</div>
+        </div>
+
+        <div style="margin-top:20px;">
+            <input type="checkbox" id="agreedToTNC" th:field="*{agreedToTNC}" />
+            I confirm that all entered information above is valid.
+            <div style="color:red;"
+                  th:if="${#fields.hasErrors('agreedToTNC')}"
+                  th:errors="*{agreedToTNC}">TNC Error</div>
+        </div>
+
+        <div style="margin-top:20px;">
+            <button>Submit</button>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hands-on Spring Validation</title>
+</head>
+<body>
+    <h1>Confirm Order</h1>
+
+    <form method="POST" th:action="@{/orders/confirm}" th:object="${order}">
+
+        <h2>CAKE ORDER</h2>
+
+        <div style="margin-top:20px;">
+            <div><b>Cake Flavor</b></div>
+            <span th:text="${ order.cakeFlavor }" />
+        </div>
+
+        <div style="margin-top:20px;">
+            <div><b>Quantity</b></div>
+            <span th:text="${ order.quantity }" />
+        </div>
+
+        <div style="margin-top:20px;">
+            <div><b>Delivery Date</b></div>
+            <span th:text="${#calendars.format(order.deliveryDate,'MMMM dd, yyyy')}" />
+        </div>
+
+        <h2>CUSTOMER INFORMATION</h2>
+
+        <div style="margin-top:20px;">
+            <div><b>First Name</b></div>
+            <span th:text="${ order.firstName }" />
+        </div>
+
+        <div style="margin-top:20px;">
+            <div><b>Last Name</b></div>
+            <span th:text="${ order.lastName }" />
+        </div>
+
+        <div style="margin-top:20px;">
+            <div><b>Contact Number</b></div>
+            <span th:text="${ order.contactNo }" />
+        </div>
+
+        <div style="margin-top:20px;">
+            <div><b>Email Address</b></div>
+            <span th:text="${ order.email }" />
+        </div>
+
+        <div style="margin-top:20px;">
+            <div><b>Birth Date</b></div>
+            <span th:text="${#calendars.format(order.birthDate,'MMMM dd, yyyy')}" />
+        </div>
+
+        <div style="margin-top:20px;">
+            <button>Confirm Order</button>
+        </div>
+    </form>
+</body>
+</html>
